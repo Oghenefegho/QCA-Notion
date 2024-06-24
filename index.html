@@ -4,15 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCA Calculator</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .result { margin-top: 20px; }
-        .semester { margin-bottom: 20px; }
-        .module { margin-bottom: 10px; }
-        .module input { margin-right: 10px; }
-        .chart-container { margin-top: 20px; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -28,122 +21,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const grades = { A: 4, B: 3, C: 2, D: 1, F: 0 };
-        const gradeColors = { A: '#66c2a5', B: '#fc8d62', C: '#8da0cb', D: '#e78ac3', F: '#a6d854' };
-        let semesterCounter = 1;
-        let gradesData = {};
-
-        function addSemester() {
-            const semesterDiv = document.createElement('div');
-            semesterDiv.id = `semester-${semesterCounter}`;
-            semesterDiv.classList.add('semester');
-            semesterDiv.innerHTML = `
-                <h2>Semester ${semesterCounter}</h2>
-                <div id="modules-${semesterCounter}"></div>
-                <input type="number" placeholder="Year (1-4)" id="year-${semesterCounter}" min="1" max="4" required />
-                <button type="button" onclick="addModule(${semesterCounter})">Add Module</button>
-            `;
-            document.getElementById('semesters-container').appendChild(semesterDiv);
-            semesterCounter++;
-        }
-
-        function addModule(semester) {
-            const moduleDiv = document.createElement('div');
-            const semesterId = `modules-${semester}`;
-            const moduleCounter = document.getElementById(semesterId).children.length + 1;
-            moduleDiv.id = `module-${semester}-${moduleCounter}`;
-            moduleDiv.classList.add('module');
-            moduleDiv.innerHTML = `
-                <input type="text" placeholder="Module Name" id="module-name-${semester}-${moduleCounter}" />
-                <input type="text" placeholder="Grade (A, B, C, D, F)" id="grade-${semester}-${moduleCounter}" />
-                <input type="number" placeholder="Percentage (0-100)" id="percentage-${semester}-${moduleCounter}" min="0" max="100" />
-                <input type="color" id="color-${semester}-${moduleCounter}" value="#000000">
-            `;
-            document.getElementById(semesterId).appendChild(moduleDiv);
-        }
-
-        async function saveGradeToNotion(year, grade, moduleName, percentage) {
-            const response = await fetch('https://your-backend-server.com/save-grade', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ year, grade, moduleName, percentage })
-            });
-            if (!response.ok) {
-                console.error('Error saving grade');
-            }
-        }
-
-        async function calculateQCA() {
-            let totalPoints = 0;
-            let totalWeight = 0;
-            const yearWeights = { 1: 0, 2: 1, 3: 1, 4: 2 };
-            gradesData = { labels: [], datasets: [] };
-
-            for (let i = 1; i < semesterCounter; i++) {
-                const yearInput = document.getElementById(`year-${i}`).value;
-                const semesterId = `modules-${i}`;
-                const modules = document.getElementById(semesterId).children;
-
-                for (let j = 0; j < modules.length; j++) {
-                    const moduleName = document.getElementById(`module-name-${i}-${j + 1}`).value;
-                    const gradeInput = document.getElementById(`grade-${i}-${j + 1}`).value.trim().toUpperCase();
-                    const percentageInput = parseInt(document.getElementById(`percentage-${i}-${j + 1}`).value);
-
-                    if (yearInput && grades[gradeInput] !== undefined && percentageInput >= 0 && percentageInput <= 100) {
-                        const year = parseInt(yearInput);
-                        const gradeValue = grades[gradeInput];
-                        totalPoints += (gradeValue * yearWeights[year] * percentageInput) / 100;
-                        totalWeight += (yearWeights[year] * percentageInput) / 100;
-
-                        if (!gradesData.labels.includes(moduleName)) {
-                            gradesData.labels.push(moduleName);
-                            gradesData.datasets.push({ label: moduleName, data: [], backgroundColor: [] });
-                        }
-
-                        gradesData.datasets[gradesData.labels.indexOf(moduleName)].data.push(gradeValue);
-                        gradesData.datasets[gradesData.labels.indexOf(moduleName)].backgroundColor.push(gradeColors[gradeInput]);
-
-                        // Save grade to Notion
-                        await saveGradeToNotion(year, gradeInput, moduleName, percentageInput);
-                    }
-                }
-            }
-
-            const qca = totalPoints / totalWeight;
-            let honors = "Fail";
-            if (qca >= 2.0) honors = "Third class honours";
-            if (qca >= 2.6) honors = "Second class, grade 2 (2.2)";
-            if (qca >= 3.0) honors = "Second class, grade 1 (2.1)";
-            if (qca >= 3.4) honors = "First class honours";
-
-            document.getElementById('result').innerText = `Overall QCA is ${qca.toFixed(2)}, ${honors}`;
-            updateChart();
-        }
-
-        function updateChart() {
-            const ctx = document.getElementById('grade-chart').getContext('2d');
-            if (gradesData.labels.length === 0) {
-                document.getElementById('chart-container').style.display = 'none';
-                return;
-            }
-            document.getElementById('chart-container').style.display = 'block';
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: gradesData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1 }
-                        }
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
