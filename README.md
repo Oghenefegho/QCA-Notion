@@ -1,2 +1,2 @@
 # QCA-Notion
-I'm trying to embed a QCA calculator on my Notion Page
+I'm trying to make a personal QCA calculator and embed it on my Notion Page
