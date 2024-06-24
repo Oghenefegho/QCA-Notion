@@ -120,4 +120,23 @@ function renderChart() {
         data: gradesData,
         options: {
             scales: {
-                y
+                y: { beginAtZero: true }
+            }
+        }
+    });
+}
+
+function saveCalculation(calculation) {
+    const calculations = JSON.parse(localStorage.getItem('calculations')) || [];
+    calculations.push(calculation);
+    localStorage.setItem('calculations', JSON.stringify(calculations));
+}
+
+function loadPreviousCalculations() {
+    const calculations = JSON.parse(localStorage.getItem('calculations')) || [];
+    calculations.forEach(calculation => {
+        // You can implement a way to display previous calculations here.
+        console.log(`QCA: ${calculation.qca}, Honors: ${calculation.honors}`);
+    });
+}
+
