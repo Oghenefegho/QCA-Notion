@@ -1,0 +1,56 @@
+body {
+    font-family: 'Sawarabi Mincho', serif;
+    margin: 20px;
+    background-image: url('https://www.studioghibli.com.au/wp-content/uploads/2020/04/Totoro-on-Tree.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.result, .chart-container {
+    margin-top: 20px;
+}
+.semester {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+}
+.module {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.module input {
+    margin-right: 10px;
+    flex: 1;
+    min-width: 100px;
+}
+.chart-container {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    padding: 10px;
+}
+h1, h2 {
+    color: #2c3e50;
+}
+button {
+    background-color: #8E44AD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #732d91;
+}
