@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCA Calculator</title>
+    <!-- Include Google Fonts for a Studio Ghibli aesthetic -->
     <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>QCA Calculator</h1>
+        <!-- Form to add semesters and modules -->
         <form id="qca-form">
+            <!-- Container for semesters -->
             <div id="semesters-container"></div>
+            <!-- Button to add a new semester -->
             <button type="button" onclick="addSemester()">Add Semester</button>
+            <!-- Button to calculate QCA -->
             <button type="button" onclick="calculateQCA()">Calculate QCA</button>
         </form>
+        <!-- Display overall QCA result -->
         <div class="result" id="result"></div>
+        <!-- Container for the grade chart -->
         <div class="chart-container" id="chart-container">
             <canvas id="grade-chart"></canvas>
         </div>
     </div>
+    <!-- Include Chart.js library for rendering charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
