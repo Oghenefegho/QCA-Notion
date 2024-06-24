@@ -1,56 +1,107 @@
-body {
-    font-family: 'Sawarabi Mincho', serif;
-    margin: 20px;
-    background-image: url('https://www.studioghibli.com.au/wp-content/uploads/2020/04/Totoro-on-Tree.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    color: #333;
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* Body background and font */
+body {
+    background-color: #f0f0f0; /* Light grey background */
+    font-family: 'Sawarabi Mincho', sans-serif; /* Studio Ghibli-inspired font */
+}
+
+/* Container for the calculator */
 .container {
     max-width: 800px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
+    margin: 20px auto; /* Center align and provide margin */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
-.result, .chart-container {
-    margin-top: 20px;
+
+/* Calculator title */
+h1 {
+    text-align: center; /* Center align title */
+    margin-bottom: 20px; /* Space below title */
+    color: #333; /* Dark text color */
 }
+
+/* Form styling */
+#qca-form {
+    margin-bottom: 20px; /* Space below form */
+}
+
+/* Semester and module styling */
 .semester {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #ccc; /* Light border */
+    padding: 10px; /* Padding inside each semester */
+    margin-bottom: 10px; /* Space between semesters */
+    border-radius: 4px; /* Rounded corners */
 }
+
+.semester h2 {
+    font-size: 1.2rem; /* Semester heading size */
+    margin-bottom: 10px; /* Space below heading */
+}
+
 .module {
-    margin-bottom: 10px;
-    display: flex;
-    flex-wrap: wrap;
+    margin-bottom: 10px; /* Space between modules */
 }
-.module input {
-    margin-right: 10px;
-    flex: 1;
-    min-width: 100px;
+
+/* Result display */
+.result {
+    padding: 10px; /* Padding inside result box */
+    background-color: #f9f9f9; /* Light grey background */
+    border: 1px solid #ccc; /* Light border */
+    margin-bottom: 20px; /* Space below result */
+    border-radius: 4px; /* Rounded corners */
 }
+
+/* Chart container */
 .chart-container {
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 8px;
-    padding: 10px;
+    margin-bottom: 20px; /* Space below chart */
 }
-h1, h2 {
-    color: #2c3e50;
-}
+
+/* Button styling */
 button {
-    background-color: #8E44AD;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 10px 20px; /* Padding inside button */
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 4px; /* Rounded corners */
+    margin-right: 10px; /* Space between buttons */
 }
+
 button:hover {
-    background-color: #732d91;
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Input field styling */
+input[type="text"],
+input[type="number"],
+input[type="color"] {
+    padding: 8px; /* Padding inside input fields */
+    margin-bottom: 10px; /* Space between input fields */
+    width: 100%; /* Full width */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+input[type="color"] {
+    height: 38px; /* Adjust height for color input */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px; /* Smaller padding for smaller screens */
+    }
+
+    button {
+        width: 100%; /* Full width buttons on smaller screens */
+        margin-bottom: 10px; /* Space below buttons */
+    }
 }
