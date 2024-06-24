@@ -173,3 +173,34 @@ function loadPreviousCalculations() {
         console.log(`QCA: ${calculation.qca}, Honors: ${calculation.honors}`);
     });
 }
+// Example data structure for storing grades per semester
+const gradesData = [
+    { year: 1, semester: 1, grades: [3.5, 2.8, 3.2, 3.0, 3.6] },
+    { year: 1, semester: 2, grades: [3.2, 3.4, 2.9, 3.1, 3.5] },
+    { year: 2, semester: 1, grades: [3.6, 3.1, 3.3, 3.5, 2.9] },
+    // Add more data for each semester and year as needed
+];
+
+// Function to calculate average grade for a semester
+function calculateAverage(grades) {
+    if (grades.length === 0) return 0;
+    const sum = grades.reduce((acc, grade) => acc + grade, 0);
+    return sum / grades.length;
+}
+
+// Function to prepare data for chart
+function prepareChartData() {
+    const labels = [];
+    const data = [];
+
+    // Iterate over gradesData to create labels and average grades
+    gradesData.forEach(entry => {
+        const semesterLabel = `Year ${entry.year}, Semester ${entry.semester}`;
+        labels.push(semesterLabel);
+        const averageGrade = calculateAverage(entry.grades);
+        data.push(averageGrade.toFixed(2)); // Round to 2 decimal places
+    });
+
+    return { labels, data };
+}
+
