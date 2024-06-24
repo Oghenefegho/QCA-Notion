@@ -1,4 +1,4 @@
-// Grade values and colors for chart
+// Grade values and corresponding colors for chart
 const grades = { A: 4, B: 3, C: 2, D: 1, F: 0 };
 const gradeColors = { A: '#66c2a5', B: '#fc8d62', C: '#8da0cb', D: '#e78ac3', F: '#a6d854' };
 
